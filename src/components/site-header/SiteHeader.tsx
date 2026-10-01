@@ -61,7 +61,7 @@ export function SiteHeader() {
           href="#hero"
           onClick={onLogoClick}
           className={cn(
-            "min-w-0 truncate text-base font-medium text-ink underline-offset-4 hover:underline",
+            "min-w-0 truncate text-base font-medium text-point underline-offset-4 hover:underline",
             focusRingClass,
           )}
         >
