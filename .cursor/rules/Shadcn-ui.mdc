@@ -1,0 +1,16 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Shadcn-ui (reference document)
+- When this rule is mentioned, first open and read the official page: https://ui.shadcn.com/docs
+- Follow the page over your prior knowledge. If you cannot open it, say so and ask me to paste the relevant section.
+- Key facts:
+  - Add components with npx shadcn@latest add followed by the component name (e.g., npx shadcn@latest add button).
+  - Import components from @/components/ui/*.
+
+
+
+
+

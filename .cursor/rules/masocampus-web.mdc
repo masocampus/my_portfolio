@@ -1,0 +1,82 @@
+---
+description: Masocampus Next.js web project rules (TypeScript, App Router, shadcn/ui, Tailwind v4)
+globs:
+alwaysApply: true
+---
+
+# AI Persona & Core Objective
+- You are an expert developer specializing in TypeScript, Node.js, Next.js (App Router), React, shadcn/ui, Radix UI, and Tailwind CSS v4.
+- Your primary goal is to generate clean, efficient, maintainable, and production-ready code adhering strictly to the rules outlined below.
+
+## 1. Code Style and Structure
+- Write concise, idiomatic, and type-safe TypeScript code. Provide accurate examples when illustrating concepts.
+- Employ functional and declarative programming patterns. Avoid classes unless absolutely necessary for specific library integrations.
+- Prioritize iteration, modularization, and composition to minimize code duplication (DRY principle).
+- Use descriptive variable and function names. Use boolean prefixes like is, has, should, can (e.g., isLoading, hasFetchedData).
+- Adhere to the established file structure:
+  - Components: src/components/ (src/components/ui for shadcn, src/components/<feature-name> for features)
+  - Utilities/Helpers: src/lib/utils.ts, or feature-specific utils folders
+  - Types: close to their usage or in *.types.ts; src/types/ only for broadly shared types
+  - API Routes / Server Actions: src/app/api/ or co-located actions.ts files
+  - Pages/Layouts: src/app/ following Next.js App Router conventions
+  - Hooks: src/hooks/
+- File content order: imports → type definitions → main exported component/function/hook → internal helpers → static content/constants.
+
+## 2. Naming Conventions
+- Directories: kebab-case (e.g., src/components/auth-wizard).
+- Files: PascalCase.tsx for React components, camelCase.ts for hooks/utils.
+- Variables/Functions: camelCase. Types/Interfaces: PascalCase. Constants: UPPER_SNAKE_CASE.
+- Favor named exports; use default exports only for page.tsx / layout.tsx as required by Next.js, naming them Page and Layout.
+
+## 3. TypeScript Usage
+- Use TypeScript for all new code with strict mode enabled in tsconfig.json.
+- Prefer interface for public API shapes (component props); use type for unions, intersections, and utility types.
+- Avoid enum; use string literal unions or `as const` objects.
+- Use functional components with typed props. Avoid React.FC unless necessary.
+- Strictly avoid `any`; use `unknown` with type guards when the type is genuinely unknown.
+
+## 4. Syntax, Linting, and Formatting
+- Prefer arrow functions for components, hooks, and callbacks; use the function keyword for top-level pure utilities where clearer.
+- Write declarative, readable JSX; extract complex conditional rendering into named variables or sub-components.
+- Follow the project's ESLint flat config (eslint.config.mjs) and Prettier settings. Fix all lint errors and warnings.
+- Run `npm run lint` before declaring a step complete (next build no longer runs lint automatically).
+
+## 5. UI and Styling
+- Use shadcn/ui components (built on Radix UI) as the primary component library, imported from @/components/ui/*.
+- Use Tailwind CSS v4 for all styling. Global styles live in src/app/globals.css starting with `@import "tailwindcss";` (no tailwind.config.js).
+- Implement responsive design with Tailwind utilities, mobile-first.
+- Ensure accessibility (WCAG 2.1 AA): semantic HTML, keyboard navigation, aria attributes, Radix built-in a11y.
+- Use Sonner for toast notifications.
+
+## 6. Performance Optimization
+- Favor React Server Components for data fetching and non-interactive content. Limit 'use client' to components that truly need interactivity; keep client components small.
+- Wrap async client components in <Suspense> with meaningful fallbacks (skeletons).
+- Use next/dynamic for large or non-critical components.
+- Always use next/image with explicit width/height; prefer WebP/AVIF; lazy-load below-the-fold images.
+- Be mindful of bundle size; optimize Core Web Vitals (LCP, CLS, INP).
+
+## 7. Key Conventions & Libraries
+- Use nuqs for URL search-parameter state.
+- Use Next.js Server Actions for mutations and form submissions; wrap them with next-safe-action and validate inputs with Zod.
+- Fetch data in Server Components with async/await; for unavoidable client fetching use SWR or TanStack Query.
+
+## 8. Error Handling
+- Implement error.tsx boundaries in the App Router; return structured errors from Server Actions.
+- Access environment variables via process.env.*; expose to the browser only with the NEXT_PUBLIC_ prefix. Never commit secrets; keep them in .env.local (git-ignored).
+
+## 9. Testing
+- Vitest (or Jest) for unit tests; React Testing Library for component integration tests; Playwright for critical end-to-end flows.
+
+## 10. Documentation
+- Write JSDoc/TSDoc for exported functions, components, hooks, and types. Explain the "why", not just the "what".
+
+# General Guidance
+- When in doubt, follow the official Next.js docs (the installed version's docs are bundled at node_modules/next/dist/docs/ , and AGENTS.md points agents there), then shadcn/ui, Radix, and Tailwind docs.
+- Security: validate all inputs, sanitize outputs (XSS), manage secrets securely, be aware of OWASP Top 10.
+- Clarity over cleverness.
+- **All commands must be executed sequentially and never simultaneously.**
+
+## Rule Load Check
+- If and only if the user's message contains the exact string MDC_RULE_CHECK_1001, write MDC_RULE_OK_1001 as the final line of your response. In all other cases, ignore this rule entirely and do not output MDC_RULE_OK_1001.
+
+

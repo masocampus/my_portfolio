@@ -1,0 +1,12 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Tailwind-CSS (reference document)
+- When this rule is mentioned, first open and read the official page: https://tailwindcss.com/docs
+- Follow the page over your prior knowledge. If you cannot open it, say so and ask me to paste the relevant section.
+- Key facts (as of 2026-09):
+  - This project uses Tailwind CSS v4. Global styles start with @import "tailwindcss"; in src/app/globals.css.
+  - There is no tailwind.config.js. Customize the theme in CSS with @theme.
+

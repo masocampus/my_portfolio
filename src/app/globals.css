@@ -1,0 +1,97 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* 시스템 설정이 아니라 .dark 클래스가 있을 때만 매칭한다. 이 앱은 .dark를 쓰지 않는다. */
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --canvas: #f7f6f3;
+  --surface: #ffffff;
+  --ink: #1a1a1a;
+  /* 캔버스 위 13px 라벨도 대비 7:1 이상이 되도록 보조색을 한 단계 어둡게 둔다. */
+  --subtle: #55534f;
+  --point-hover: #1a3151;
+  --line: #e6e4df;
+  --point: #1f3a5f;
+
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--point);
+  --primary-foreground: var(--surface);
+  --secondary: var(--canvas);
+  --secondary-foreground: var(--ink);
+  --muted: var(--canvas);
+  --muted-foreground: var(--subtle);
+  --accent: var(--canvas);
+  --accent-foreground: var(--ink);
+  --destructive: var(--ink);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--point);
+  --radius: 0.625rem;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-subtle: var(--subtle);
+  --color-line: var(--line);
+  --color-point: var(--point);
+  --color-point-hover: var(--point-hover);
+
+  /* shadcn 부품이 쓰는 이름. 값은 위 여섯 색만 가리킨다. */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-heading: var(--font-geist-sans), sans-serif;
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply overflow-x-clip bg-canvas text-base leading-[1.75] text-ink;
+    text-rendering: optimizeLegibility;
+  }
+}
